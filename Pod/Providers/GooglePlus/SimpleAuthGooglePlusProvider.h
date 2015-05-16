@@ -1,5 +1,5 @@
 //
-//  SimpleAuthGoogleProvider.h
+//  SimpleAuthGooglePlusProvider.h
 //  SimpleAuth
 //
 //  Created by Martin Pilch on 16/5/15.
@@ -8,6 +8,6 @@
 
 #import "SimpleAuthProvider.h"
 
-@interface SimpleAuthGoogleProvider : SimpleAuthProvider
+@interface SimpleAuthGooglePlusProvider : SimpleAuthProvider
 
 @end

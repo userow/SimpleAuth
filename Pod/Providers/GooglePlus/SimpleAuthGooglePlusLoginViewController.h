@@ -1,5 +1,5 @@
 //
-//  SimpleAuthGoogleLoginViewController.h
+//  SimpleAuthGooglePlusLoginViewController.h
 //  SimpleAuth
 //
 //  Created by Martin Pilch on 16/5/15.
@@ -8,6 +8,6 @@
 
 #import "SimpleAuthWebViewController.h"
 
-@interface SimpleAuthGoogleLoginViewController : SimpleAuthWebViewController
+@interface SimpleAuthGooglePlusLoginViewController : SimpleAuthWebViewController
 
 @end
