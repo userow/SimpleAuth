@@ -97,6 +97,12 @@ Pod::Spec.new do |s|
     ss.private_header_files = 'Pod/Providers/GoogleWeb/*.h'
   end
 
+  s.subspec 'GooglePlus' do |ss|
+    ss.dependency 'SimpleAuth/Core'
+    ss.source_files = 'Pod/Providers/GooglePlus'
+    ss.private_header_files = 'Pod/Providers/GooglePlus/*.h'
+  end
+
   s.subspec 'TripIt' do |ss|
     ss.dependency 'SimpleAuth/Core'
     ss.dependency 'cocoa-oauth'
