@@ -10,7 +10,6 @@
 
 @implementation SimpleAuthGooglePlusLoginViewController
 
-#pr
 #pragma mark - SimpleAuthWebViewController
 
 - (instancetype)initWithOptions:(NSDictionary *)options requestToken:(NSDictionary *)requestToken {

@@ -48,7 +48,7 @@
 
 - (void)authorizeWithCompletion:(SimpleAuthRequestHandler)completion {
     dispatch_async(dispatch_get_main_queue(), ^{
-        SimpleAuthGoogleWebLoginViewController *loginViewController = [[SimpleAuthGoogleWebLoginViewController alloc] initWithOptions:self.options];
+        SimpleAuthGooglePlusLoginViewController *loginViewController = [[SimpleAuthGooglePlusLoginViewController alloc] initWithOptions:self.options];
         loginViewController.completion = ^(UIViewController *viewController, NSURL *URL, NSError *error) {
             SimpleAuthInterfaceHandler dismissBlock = self.options[SimpleAuthDismissInterfaceBlockKey];
             dismissBlock(viewController);
@@ -167,27 +167,12 @@
                              @"raw_info" : account
                              };
     
-    // Location
-    NSString *location = account[@"location"][@"name"];
-    
     // User info
     NSMutableDictionary *user = [NSMutableDictionary new];
-    if (account[@"email"]) {
-        user[@"email"] = account[@"email"];
-    }
-    user[@"name"] = account[@"name"];
-    user[@"first_name"] = account[@"given_name"];
-    user[@"last_name"] = account[@"family_name"];
+    user[@"name"] = account[@"displayName"];
     user[@"gender"] = account[@"gender"];
     
-    user[@"image"] = account[@"picture"];
-    if (location) {
-        user[@"location"] = location;
-    }
-    user[@"verified"] = account[@"verified_email"] ? @YES : @NO;
-    user[@"urls"] = @{
-                      @"Google +" : account[@"link"],
-                      };
+    user[@"image"] = account[@"image"];
     
     dictionary[@"info"] = user;
     
