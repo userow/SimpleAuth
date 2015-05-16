@@ -146,4 +146,10 @@ Pod::Spec.new do |s|
     ss.private_header_files = 'Pod/Providers/Vimeo/*.h'
   end
 
+  s.subspec 'Youtube' do |ss|
+    ss.dependency 'SimpleAuth/Core'
+    ss.source_files = 'Pod/Providers/Youtube'
+    ss.private_header_files = 'Pod/Providers/Youtube/*.h'
+  end
+
 end
