@@ -12,12 +12,12 @@
 #import "UIViewController+SimpleAuthAdditions.h"
 #import <ReactiveCocoa/ReactiveCocoa.h>
 
-@implementation SimpleAuthGoogleProvider
+@implementation SimpleAuthGooglePlusProvider
 
 #pragma mark - SimpleAuthProvider
 
 + (NSString *)type {
-    return @"google-web";
+    return @"google-plus";
 }
 
 + (NSDictionary *)defaultOptions {
