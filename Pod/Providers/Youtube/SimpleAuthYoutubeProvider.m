@@ -42,7 +42,7 @@
     options[SimpleAuthPresentInterfaceBlockKey] = presentBlock;
     options[SimpleAuthDismissInterfaceBlockKey] = dismissBlock;
     options[SimpleAuthRedirectURIKey] = @"http://localhost";
-    options[@"scope"] = @"email openid profile";
+    options[@"scope"] = @"https://www.googleapis.com/auth/youtube";
     return options;
 }
 
@@ -100,8 +100,7 @@
                                        NSDictionary *credentials = @{
                                                                      @"access_token" : token,
                                                                      @"expires" : [NSDate dateWithTimeIntervalSinceNow:[dictionary[@"expires_in"] doubleValue]],
-                                                                     @"token_type" : @"bearer",
-                                                                     @"id_token": dictionary[@"id_token"]
+                                                                     @"token_type" : @"bearer"
                                                                      };
                                        
                                        [self userWithCredentials:credentials
@@ -118,13 +117,7 @@
 
 - (void)userWithCredentials:(NSDictionary *)credentials completion:(SimpleAuthRequestHandler)completion {
     
-    NSDictionary *parameters = @{
-        @"part" : @"snippet",
-        @"mySubscribers" : @"true"
-    };
-
-    NSString *URLString = [NSString stringWithFormat:@"https://www.googleapis.com/youtube/v3/people/subscriptions?%@",
-                          [CMDQueryStringSerialization queryStringWithDictionary:parameters]];
+    NSString *URLString = [NSString stringWithFormat:@"https://www.googleapis.com/youtube/v3/subscriptions?part=snippet&mySubscribers=true"];
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:URLString]];
     
     [request setValue:[NSString stringWithFormat:@"Bearer %@", credentials[@"access_token"]] forHTTPHeaderField:@"Authorization"];
