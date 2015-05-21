@@ -42,7 +42,7 @@
     options[SimpleAuthPresentInterfaceBlockKey] = presentBlock;
     options[SimpleAuthDismissInterfaceBlockKey] = dismissBlock;
     options[SimpleAuthRedirectURIKey] = @"http://localhost";
-    options[@"scope"] = @"https://www.googleapis.com/auth/youtube";
+    options[@"scope"] = @"email openid profile https://www.googleapis.com/auth/youtube";
     return options;
 }
 
@@ -58,7 +58,7 @@
             NSString *code = dictionary[@"code"];
             if ([code length] > 0) {
                 [self userWithCode:code
-                               completion:completion];
+                        completion:completion];
             } else {
                 completion(nil, error);
             }
@@ -92,8 +92,8 @@
                                if ([indexSet containsIndex:statusCode] && data) {
                                    NSError *parseError;
                                    NSDictionary *dictionary = [NSJSONSerialization JSONObjectWithData:data
-                                                                                                      options:kNilOptions
-                                                                                                        error:&parseError];
+                                                                                              options:kNilOptions
+                                                                                                error:&parseError];
                                    NSString *token = dictionary[@"access_token"];
                                    if ([token length] > 0) {
                                        
@@ -112,12 +112,13 @@
                                } else {
                                    completion(nil, connectionError);
                                }
-    }];
+                           }];
 }
+
 
 - (void)userWithCredentials:(NSDictionary *)credentials completion:(SimpleAuthRequestHandler)completion {
     
-    NSString *URLString = [NSString stringWithFormat:@"https://www.googleapis.com/youtube/v3/subscriptions?part=snippet&mySubscribers=true"];
+    NSString *URLString = [NSString stringWithFormat:@"https://www.googleapis.com/userinfo/v2/me"];
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:URLString]];
     
     [request setValue:[NSString stringWithFormat:@"Bearer %@", credentials[@"access_token"]] forHTTPHeaderField:@"Authorization"];
@@ -131,10 +132,12 @@
                                if ([indexSet containsIndex:statusCode] && data) {
                                    NSError *parseError;
                                    NSDictionary *userInfo = [NSJSONSerialization JSONObjectWithData:data
-                                                                                                      options:kNilOptions
-                                                                                                        error:&parseError];
+                                                                                            options:kNilOptions
+                                                                                              error:&parseError];
                                    if (userInfo) {
-                                       completion ([self dictionaryWithAccount:userInfo credentials:credentials], nil);
+                                       [self userDataWithAccount:userInfo
+                                                     credentials:credentials
+                                                      completion:completion];
                                    } else {
                                        completion(nil, parseError);
                                    }
@@ -144,38 +147,67 @@
                            }];
 }
 
-- (NSDictionary *)dictionaryWithAccount:(NSDictionary *)account
-                            credentials:(NSDictionary *)credentials
+- (void)userDataWithAccount:(NSDictionary *)account
+                credentials:(NSDictionary *)credentials
+                 completion:(SimpleAuthRequestHandler)completion
 {
-    NSMutableDictionary *dictionary = [NSMutableDictionary dictionary];
+    NSString *URLString = [NSString stringWithFormat:@"https://www.googleapis.com/youtube/v3/subscriptions?part=snippet&mySubscribers=true"];
+    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:URLString]];
     
-    // Provider
-    dictionary[@"provider"] = [[self class] type];
+    [request setValue:[NSString stringWithFormat:@"Bearer %@", credentials[@"access_token"]] forHTTPHeaderField:@"Authorization"];
     
-    // Credentials
-    dictionary[@"credentials"] = @{
-                                   @"token" : credentials[@"access_token"],
-                                   @"expires_at" : credentials[@"expires"]
-                                   };
-    
-    // User ID
-    dictionary[@"uid"] = account[@"id"];
-    
-    // Raw response
-    dictionary[@"extra"] = @{
-                             @"raw_info" : account
-                             };
-    
-    // User info
-    NSMutableDictionary *user = [NSMutableDictionary new];
-    user[@"name"] = account[@"displayName"];
-    user[@"gender"] = account[@"gender"];
-    
-    user[@"image"] = account[@"image"];
-    
-    dictionary[@"info"] = user;
-    
-    return dictionary;
+    [NSURLConnection sendAsynchronousRequest:request
+                                       queue:self.operationQueue
+                           completionHandler:^(NSURLResponse *response, NSData *data, NSError *connectionError) {
+                               
+                               NSIndexSet *indexSet = [NSIndexSet indexSetWithIndexesInRange:NSMakeRange(200, 99)];
+                               NSInteger statusCode = [(NSHTTPURLResponse *)response statusCode];
+                               if ([indexSet containsIndex:statusCode] && data) {
+                                   NSError *parseError;
+                                   NSDictionary *subscriptionsInfo = [NSJSONSerialization JSONObjectWithData:data
+                                                                                                     options:kNilOptions
+                                                                                                       error:&parseError];
+                                   
+                                   NSMutableDictionary *dictionary = [NSMutableDictionary dictionary];
+                                   
+                                   // Provider
+                                   dictionary[@"provider"] = [[self class] type];
+                                   
+                                   // Credentials
+                                   dictionary[@"credentials"] = @{
+                                                                  @"token" : credentials[@"access_token"],
+                                                                  @"expires_at" : credentials[@"expires"]
+                                                                  };
+                                   
+                                   // User ID
+                                   dictionary[@"uid"] = account[@"id"];
+                                   
+                                   NSMutableDictionary *accountDict = [NSMutableDictionary dictionaryWithDictionary:account];
+                                   accountDict[@"subscribers"] = subscriptionsInfo[@"pageInfo"][@"totalResults"];
+                                   
+                                   // Raw response
+                                   dictionary[@"extra"] = @{
+                                                            @"raw_info" : accountDict
+                                                            };
+                                   
+                                   // User info
+                                   NSMutableDictionary *user = [NSMutableDictionary new];
+                                   user[@"name"] = account[@"name"];
+                                   user[@"gender"] = account[@"gender"];
+                                   
+                                   user[@"image"] = account[@"picture"];
+                                   
+                                   dictionary[@"info"] = user;
+                                   
+                                   if (subscriptionsInfo) {
+                                       completion (dictionary, nil);
+                                   } else {
+                                       completion(nil, parseError);
+                                   }
+                               } else {
+                                   completion(nil, connectionError);
+                               }
+                           }];
 }
 
 @end
