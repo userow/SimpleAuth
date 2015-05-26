@@ -43,6 +43,7 @@
     options[SimpleAuthDismissInterfaceBlockKey] = dismissBlock;
     options[SimpleAuthRedirectURIKey] = @"http://localhost";
     options[@"scope"] = @"email openid profile";
+    options[@"access_type"] = @"offline";
     return options;
 }
 
