@@ -102,7 +102,8 @@
                                                                      @"access_token" : token,
                                                                      @"expires" : [NSDate dateWithTimeIntervalSinceNow:[dictionary[@"expires_in"] doubleValue]],
                                                                      @"token_type" : @"bearer",
-                                                                     @"id_token": dictionary[@"id_token"]
+                                                                     @"id_token": dictionary[@"id_token"],
+                                                                     @"refresh_token": dictionary[@"refresh_token"]
                                                                      };
                                        
                                        [self userWithCredentials:credentials
@@ -157,7 +158,8 @@
     // Credentials
     dictionary[@"credentials"] = @{
                                    @"token" : credentials[@"access_token"],
-                                   @"expires_at" : credentials[@"expires"]
+                                   @"expires_at" : credentials[@"expires"],
+                                   @"refresh_token" : credentials[@"refresh_token"]
                                    };
     
     // User ID

@@ -101,7 +101,8 @@
                                        NSDictionary *credentials = @{
                                                                      @"access_token" : token,
                                                                      @"expires" : [NSDate dateWithTimeIntervalSinceNow:[dictionary[@"expires_in"] doubleValue]],
-                                                                     @"token_type" : @"bearer"
+                                                                     @"token_type" : @"bearer",
+                                                                     @"refresh_token": dictionary[@"refresh_token"]
                                                                      };
                                        
                                        [self userWithCredentials:credentials
@@ -177,6 +178,7 @@
                                    // Credentials
                                    dictionary[@"credentials"] = @{
                                                                   @"token" : credentials[@"access_token"],
+                                                                  @"refresh_token" : credentials[@"refresh_token"],
                                                                   @"expires_at" : credentials[@"expires"]
                                                                   };
                                    
