@@ -195,10 +195,10 @@
                                    
                                    // User info
                                    NSMutableDictionary *user = [NSMutableDictionary new];
-                                   user[@"name"] = account[@"name"];
-                                   user[@"gender"] = account[@"gender"];
+                                   user[@"name"] = account[@"name"] ? account[@"name"] : @"";
+                                   user[@"gender"] = account[@"gender"] ? account[@"gender"] : @"";
                                    
-                                   user[@"image"] = account[@"picture"];
+                                   user[@"image"] = account[@"picture"] ? account[@"picture"] : @"";
                                    
                                    dictionary[@"info"] = user;
                                    
