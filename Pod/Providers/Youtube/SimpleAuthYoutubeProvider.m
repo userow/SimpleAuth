@@ -74,7 +74,6 @@
 {
     NSDictionary *parameters = @{ @"code" : code,
                                   @"client_id" : self.options[@"client_id"],
-                                  @"client_secret" : self.options[@"client_secret"],
                                   @"redirect_uri": self.options[@"redirect_uri"],
                                   @"grant_type": @"authorization_code"};
     
