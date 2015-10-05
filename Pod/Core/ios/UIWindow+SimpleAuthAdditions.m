@@ -11,6 +11,9 @@
 @implementation UIWindow (SimpleAuthAdditions)
 
 + (instancetype)SimpleAuth_mainWindow {
+#ifndef APP_EXTENSION
+    return [[[UIApplication sharedApplication] delegate] window];
+#endif
     return nil;
 }
 
