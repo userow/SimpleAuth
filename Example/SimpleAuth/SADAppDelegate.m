@@ -92,6 +92,9 @@
     
     // client_id is required
     SimpleAuth.configuration[@"vkontakte-web"] = @{};
+
+    // client_id and client_secret are required
+    SimpleAuth.configuration[@"dribbble"] = @{};
 }
 
 

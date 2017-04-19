@@ -97,6 +97,12 @@ Pod::Spec.new do |s|
     ss.private_header_files = 'Pod/Providers/GoogleWeb/*.h'
   end
 
+  s.subspec 'GooglePlus' do |ss|
+    ss.dependency 'SimpleAuth/Core'
+    ss.source_files = 'Pod/Providers/GooglePlus'
+    ss.private_header_files = 'Pod/Providers/GooglePlus/*.h'
+  end
+
   s.subspec 'TripIt' do |ss|
     ss.dependency 'SimpleAuth/Core'
     ss.dependency 'cocoa-oauth'
@@ -127,11 +133,29 @@ Pod::Spec.new do |s|
     ss.source_files = 'Pod/Providers/OneDriveWeb'
     ss.private_header_files = 'Pod/Providers/OneDriveWeb/*.h'
   end
-
- s.subspec 'VKontakteWeb' do |ss|
+  
+  s.subspec 'VKontakteWeb' do |ss|
     ss.dependency 'SimpleAuth/Core'
     ss.source_files = 'Pod/Providers/VKontakteWeb'
     ss.private_header_files = 'Pod/Providers/VKontakteWeb/*.h'
+  end
+
+  s.subspec 'Dribbble' do |ss|
+    ss.dependency 'SimpleAuth/Core'
+    ss.source_files = 'Pod/Providers/Dribbble'
+    ss.private_header_files = 'Pod/Providers/Dribbble/*.h'
+  end
+
+  s.subspec 'Vimeo' do |ss|
+    ss.dependency 'SimpleAuth/Core'
+    ss.source_files = 'Pod/Providers/Vimeo'
+    ss.private_header_files = 'Pod/Providers/Vimeo/*.h'
+  end
+
+  s.subspec 'Youtube' do |ss|
+    ss.dependency 'SimpleAuth/Core'
+    ss.source_files = 'Pod/Providers/Youtube'
+    ss.private_header_files = 'Pod/Providers/Youtube/*.h'
   end
 
 end
