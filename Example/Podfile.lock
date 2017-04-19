@@ -12,68 +12,80 @@ PODS:
   - ReactiveCocoa/no-arc (2.5)
   - ReactiveCocoa/UI (2.5):
     - ReactiveCocoa/Core
-  - SimpleAuth (0.3.9):
-    - SimpleAuth/BoxWeb (= 0.3.9)
-    - SimpleAuth/Core (= 0.3.9)
-    - SimpleAuth/DropboxWeb (= 0.3.9)
-    - SimpleAuth/Facebook (= 0.3.9)
-    - SimpleAuth/FacebookWeb (= 0.3.9)
-    - SimpleAuth/FoursquareWeb (= 0.3.9)
-    - SimpleAuth/GoogleWeb (= 0.3.9)
-    - SimpleAuth/Instagram (= 0.3.9)
-    - SimpleAuth/LinkedInWeb (= 0.3.9)
-    - SimpleAuth/Meetup (= 0.3.9)
-    - SimpleAuth/OneDriveWeb (= 0.3.9)
-    - SimpleAuth/SinaWeiboWeb (= 0.3.9)
-    - SimpleAuth/Strava (= 0.3.9)
-    - SimpleAuth/Trello (= 0.3.9)
-    - SimpleAuth/TripIt (= 0.3.9)
-    - SimpleAuth/Tumblr (= 0.3.9)
-    - SimpleAuth/Twitter (= 0.3.9)
-    - SimpleAuth/TwitterWeb (= 0.3.9)
-    - SimpleAuth/VKontakteWeb (= 0.3.9)
-  - SimpleAuth/BoxWeb (0.3.9):
+  - SimpleAuth (0.3.10):
+    - SimpleAuth/BoxWeb (= 0.3.10)
+    - SimpleAuth/Core (= 0.3.10)
+    - SimpleAuth/Dribbble (= 0.3.10)
+    - SimpleAuth/DropboxWeb (= 0.3.10)
+    - SimpleAuth/Facebook (= 0.3.10)
+    - SimpleAuth/FacebookWeb (= 0.3.10)
+    - SimpleAuth/FoursquareWeb (= 0.3.10)
+    - SimpleAuth/GooglePlus (= 0.3.10)
+    - SimpleAuth/GoogleWeb (= 0.3.10)
+    - SimpleAuth/Instagram (= 0.3.10)
+    - SimpleAuth/LinkedInWeb (= 0.3.10)
+    - SimpleAuth/Meetup (= 0.3.10)
+    - SimpleAuth/OneDriveWeb (= 0.3.10)
+    - SimpleAuth/SinaWeiboWeb (= 0.3.10)
+    - SimpleAuth/Strava (= 0.3.10)
+    - SimpleAuth/Trello (= 0.3.10)
+    - SimpleAuth/TripIt (= 0.3.10)
+    - SimpleAuth/Tumblr (= 0.3.10)
+    - SimpleAuth/Twitter (= 0.3.10)
+    - SimpleAuth/TwitterWeb (= 0.3.10)
+    - SimpleAuth/Vimeo (= 0.3.10)
+    - SimpleAuth/VKontakteWeb (= 0.3.10)
+    - SimpleAuth/Youtube (= 0.3.10)
+  - SimpleAuth/BoxWeb (0.3.10):
     - SimpleAuth/Core
-  - SimpleAuth/Core (0.3.9):
+  - SimpleAuth/Core (0.3.10):
     - CMDQueryStringSerialization
-    - ReactiveCocoa
-  - SimpleAuth/DropboxWeb (0.3.9):
+    - ReactiveCocoa (~> 2.5)
+  - SimpleAuth/Dribbble (0.3.10):
     - SimpleAuth/Core
-  - SimpleAuth/Facebook (0.3.9):
+  - SimpleAuth/DropboxWeb (0.3.10):
     - SimpleAuth/Core
-  - SimpleAuth/FacebookWeb (0.3.9):
+  - SimpleAuth/Facebook (0.3.10):
     - SimpleAuth/Core
-  - SimpleAuth/FoursquareWeb (0.3.9):
+  - SimpleAuth/FacebookWeb (0.3.10):
     - SimpleAuth/Core
-  - SimpleAuth/GoogleWeb (0.3.9):
+  - SimpleAuth/FoursquareWeb (0.3.10):
     - SimpleAuth/Core
-  - SimpleAuth/Instagram (0.3.9):
+  - SimpleAuth/GooglePlus (0.3.10):
     - SimpleAuth/Core
-  - SimpleAuth/LinkedInWeb (0.3.9):
+  - SimpleAuth/GoogleWeb (0.3.10):
     - SimpleAuth/Core
-  - SimpleAuth/Meetup (0.3.9):
+  - SimpleAuth/Instagram (0.3.10):
     - SimpleAuth/Core
-  - SimpleAuth/OneDriveWeb (0.3.9):
+  - SimpleAuth/LinkedInWeb (0.3.10):
     - SimpleAuth/Core
-  - SimpleAuth/SinaWeiboWeb (0.3.9):
+  - SimpleAuth/Meetup (0.3.10):
     - SimpleAuth/Core
-  - SimpleAuth/Strava (0.3.9):
+  - SimpleAuth/OneDriveWeb (0.3.10):
     - SimpleAuth/Core
-  - SimpleAuth/Trello (0.3.9):
+  - SimpleAuth/SinaWeiboWeb (0.3.10):
     - SimpleAuth/Core
-  - SimpleAuth/TripIt (0.3.9):
+  - SimpleAuth/Strava (0.3.10):
+    - SimpleAuth/Core
+  - SimpleAuth/Trello (0.3.10):
+    - SimpleAuth/Core
+  - SimpleAuth/TripIt (0.3.10):
     - cocoa-oauth
     - SimpleAuth/Core
-  - SimpleAuth/Tumblr (0.3.9):
+  - SimpleAuth/Tumblr (0.3.10):
     - cocoa-oauth
     - SimpleAuth/Core
-  - SimpleAuth/Twitter (0.3.9):
+  - SimpleAuth/Twitter (0.3.10):
     - cocoa-oauth
     - SimpleAuth/Core
-  - SimpleAuth/TwitterWeb (0.3.9):
+  - SimpleAuth/TwitterWeb (0.3.10):
     - cocoa-oauth
     - SimpleAuth/Core
-  - SimpleAuth/VKontakteWeb (0.3.9):
+  - SimpleAuth/Vimeo (0.3.10):
+    - SimpleAuth/Core
+  - SimpleAuth/VKontakteWeb (0.3.10):
+    - SimpleAuth/Core
+  - SimpleAuth/Youtube (0.3.10):
     - SimpleAuth/Core
 
 DEPENDENCIES:
@@ -89,6 +101,8 @@ SPEC CHECKSUMS:
   ISO8601: 8805b6cd6b2d0f7e594f7c5b50e8b00b51695ac0
   NSData+Base64: 4e84902c4db907a15673474677e57763ef3903e4
   ReactiveCocoa: e2db045570aa97c695e7aa97c2bcab222ae51f4a
-  SimpleAuth: 84c0a98a8797f3b9400d699f3a2c7e3be5dde1ca
+  SimpleAuth: 3209bd1259d337a3196417c6e1e63eeca2ba9c8c
 
-COCOAPODS: 0.37.2
+PODFILE CHECKSUM: 2e92486f44b34fa13e6251b1f3c90b5854ad829c
+
+COCOAPODS: 1.2.0

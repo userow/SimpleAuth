@@ -1,3 +1,6 @@
 source 'https://github.com/CocoaPods/Specs.git'
-platform :ios, '6.0'
-pod 'SimpleAuth', :path => '..'
+platform :ios, '8.0'
+
+target 'SimpleAuth' do
+	pod 'SimpleAuth', :path => '..'
+end
